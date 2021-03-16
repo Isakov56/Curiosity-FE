@@ -1,0 +1,76 @@
+.read-all-btn{
+    background-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border: none;
+    color: rgb(46, 105, 255);
+}
+
+.read-all-btn:hover{
+    text-decoration: underline;
+    background-color: transparent !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border: none;
+    color: rgb(46, 105, 255);
+}
+
+.make-post-btn:hover{
+    transition: 0;
+    background-color: rgba(46, 105, 255, 0.171);
+    color: rgb(0, 62, 219) !important;
+}
+
+#dropdown-basic{
+    background-color: rgba(211, 211, 211, 0.26);
+    color: gray;
+    border: 1px solid gray;
+    border-radius: 15px !important;
+    position: relative;
+    padding-bottom: 2px !important;
+}
+
+#dropdown-basic:hover{
+    background-color: rgba(211, 211, 211, 0.404);
+    color: rgb(82, 82, 82);
+}
+
+.textarea{
+    border: 1px solid gray !important;
+    border-radius: 3px !important;
+}
+
+.textarea:focus{
+    outline: none;
+    box-shadow: none !important;
+    transition: 0.2s !important;
+    background-color: #007bff11 !important;
+    border: 1px solid #007bff !important;
+}
+
+.post-modal-footer * {
+    font-size: 1.5rem;
+    margin-right: 12px;
+}
+
+.post-btn:hover{
+    transition: 0;
+    background-color: rgba(46, 105, 255, 0.171);
+    color: rgb(0, 62, 219) !important;
+}
+
+#post-card-dropdaown{
+    background-color: transparent !important;
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    content: none;
+}
+
+.post-card:hover{
+    background-color: rgba(211, 211, 211, 0.158);
+}
+
+.post-card-child{
+    background-color: transparent !important;
+}

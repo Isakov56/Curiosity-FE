@@ -1,0 +1,36 @@
+.questions-container{
+    width: 1002px;
+}
+
+.left-icons i{
+    font-size: 1.2rem;
+    color: grey;
+}
+
+.left-icons i:hover{
+    font-size: 1.2rem;
+    color: grey;
+    background-color: rgba(211, 211, 211, 0.253);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.question-main{
+    background-color: white !important;
+}
+
+.container-main-questions{
+    background-color: rgba(211, 211, 211, 0.315) !important;
+    min-height: 100vh;
+}
+
+.my-btns button{
+    background-color: transparent;
+    color: gray;
+}
+
+.my-btns button:focus{
+    font-weight: 500;
+    background-color: #e8472321;
+    color: rgb(232, 71, 35);
+}
