@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import { useHistory, Link } from "react-router-dom";
+import { fetchUser } from '../../store'
 
 export default function SignIn() {
   const [email, setEmail] = useState("");
@@ -19,7 +20,7 @@ export default function SignIn() {
   const submit = async (e) => {
     try {
       e.preventDefault();
-      const res = await fetch("http://localhost:3003/users/login", {
+      const res = await fetch("http://localhost:3003/api/users/login", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -31,10 +32,10 @@ export default function SignIn() {
         }),
       });
       if (res.ok) {
-        
         const data = await res.json()
         localStorage.setItem("JWTToken", data.token);
         history.push("/profile");
+
       } else {
         setAlert(true);
       }

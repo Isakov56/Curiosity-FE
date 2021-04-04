@@ -74,3 +74,25 @@
 .post-card-child{
     background-color: transparent !important;
 }
+
+.textarea.comment{
+    width: 100% !important;
+    height: 2rem !important;
+}
+
+.comments-user-img{
+    width: 2.4rem !important;
+    height: 2.4rem !important;
+    border-radius: 50%;
+}
+
+.post-btn.comments{
+    height:2rem !important;
+}
+
+.post-btn.comments.disabled{
+    transition: 0;
+    background-color: rgba(128, 128, 128, 0.267);
+    cursor: not-allowed;
+    color: rgb(105, 105, 105) !important;
+}

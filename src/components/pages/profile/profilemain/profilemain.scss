@@ -6,9 +6,33 @@
     border-bottom: 2px solid lightgrey;
 }
 
-.user-img{
+.user-img-i{
     font-size: 6rem;
     color: rgb(161, 201, 214);
+}
+
+.user-img{
+    width:6rem;
+    height: 6rem;
+    border-radius: 50%;
+}
+
+.user-img-btn{
+    position: absolute;
+    left: 38%;
+    top: 38%;
+    font-size: 1.5rem;
+    color: #007bff;
+}
+
+.user-img-btn:hover{
+    color: #2e69ff;
+    cursor: pointer;
+}
+
+.user-img-btn-container{
+    border-radius: 50%;
+    position: relative;
 }
 
 .activity-nav-container{

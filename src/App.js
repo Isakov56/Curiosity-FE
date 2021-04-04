@@ -9,9 +9,11 @@ import Questions from './components/pages/questions/Questions'
 import NavBar from './components/navbar/NavBar'
 import StickyBox from "react-sticky-box"
 import {Route} from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 
 
 function App() {
+  
   return (
     <div className="App">
       <StickyBox style={{zIndex: "99"}}>
@@ -30,6 +32,7 @@ function App() {
 
       <Route path="/login" exact component={LogIn} />
       <Route path='/signup' exact component={SignUp} />
+      {/* <button onClick={() => dispatch(fetchUser())}>click</button> */}
     </div>
   );
 }
