@@ -58,7 +58,7 @@ const handleComment = (currentUser, setComment, comment) =>{
     console.log(currentUser, 'hellllllooldsjfkdjfsdjhgfkdfgkjhfksdhfghsdgfjsfhdg')
     return (
         <div>
-            <div></div>
+            
             {currentUserPosts?.slice(0).reverse().map((post, key) =>(
                 <div className=" answers-card d-flex p-2 border-bottom" key={key}>
                     <div className="d-flex flex-column align-items-start" style={{width: "100%"}}>
