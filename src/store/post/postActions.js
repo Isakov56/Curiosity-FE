@@ -57,23 +57,28 @@ export const newPost = (data, handleClose, file) => {
       axios.post('http://localhost:3003/api/posts/newPost', data, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
-            .then(res => {
-
+            //.then(res => {dispatch(fetchCurrentUserPostsSuccess(res.data))})
+            .then(res => { {file ? 
                 axios.put(`http://localhost:3003/api/posts/${res.data._id}/editPostImg`, file, {
-                headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
+                    headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
+                })
+                .then(res => {dispatch(fetchCurrentUserPostsSuccess(res.data))}) : 
+                axios.get(`http://localhost:3003/api/posts/all/me`, {
+                    headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
                 })
                 .then(res => {dispatch(fetchCurrentUserPostsSuccess(res.data))})
+            }
             }, 
             handleClose())
-                .catch(err => {
-                dispatch(fetchPostFailure(err.message))
+            .catch(err => {
+            dispatch(fetchPostFailure(err.message))
             })
     }
 }
 
 export const addPostImage = (data, postId) => {
     return (dispatch) => {
-    console.log( postId, "hellllllllnnnnnnnnnnoooooooo gggggggggggggggggggggg")
+    //console.log( postId, "hellllllllnnnnnnnnnnoooooooo gggggggggggggggggggggg")
       dispatch(fetchPostRequest())
       axios.put(`http://localhost:3003/api/posts/${postId}/editPostImg`, data, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
@@ -81,6 +86,18 @@ export const addPostImage = (data, postId) => {
             .then()
     }
 }
+
+export const handleLike = (postId) => {
+    console.log( postId, "hellllskjjdkjfkjskfj")
+    return (dispatch) => {
+      //dispatch(fetchPostRequest())
+      axios.post(`http://localhost:3003/api/posts/${postId}/like`, {
+                headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
+            })
+            
+    }
+}
+
 export const deletePost = (postId) => {
     return (dispatch) => {
       dispatch(fetchPostRequest())
@@ -101,3 +118,6 @@ export const deletePost = (postId) => {
             })
     }
 }
+
+
+

@@ -1,4 +1,4 @@
-import {FETCH_COMMENT_REQUEST, FETCH_COMMENT_FAILURE, FETCH_POST_COMMENTS_SUCCESS} from './postTypes'
+import {FETCH_COMMENT_REQUEST, FETCH_COMMENT_FAILURE, FETCH_POST_COMMENTS_SUCCESS} from './commentTypes'
 
 const initialState = {
     loading: false,
@@ -16,14 +16,14 @@ const userReducer = (state = initialState, action) => {
         case FETCH_COMMENT_FAILURE:
             return {
                 loading: false,
-                postComments: action.payload,
-                error: ''
+                postComments: [],
+                error: action.payload
             }
         case FETCH_POST_COMMENTS_SUCCESS:
             return {
                 loading: false,
-                postComments: [],
-                error: action.payload
+                postComments: action.payload,
+                error: ''
             }
         default: return state
     }

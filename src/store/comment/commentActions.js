@@ -1,4 +1,4 @@
-import { FETCH_COMMENT_REQUEST, FETCH_COMMENT_FAILURE, FETCH_POST_COMMENTS_SUCCESS} from './postTypes'
+import { FETCH_COMMENT_REQUEST, FETCH_COMMENT_FAILURE, FETCH_POST_COMMENTS_SUCCESS} from './commentTypes'
 
 import axios from 'axios'
 
@@ -37,3 +37,21 @@ export const fetchCurrentPostComments = (postId) => {
             })
     }
 }
+
+    export const addComment = (postId, commentContent) => {
+        return (dispatch) => {
+          dispatch(fetchCommentRequest())
+          //console.log(commentContent, postId, "commmenenenrtttntnntmtmttcontent")
+          axios.post(`http://localhost:3003/api/comments/${postId}/add`, commentContent, {
+                    headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
+                })
+                .then(res => {
+                    const currentPostComments = res.data
+                    dispatch(fetchAllPostCommentsSuccess(currentPostComments))
+                })
+                .catch(err => {
+                    dispatch(fetchCommentFailure(err.message))
+                })
+        }
+    }
+

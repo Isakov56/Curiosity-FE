@@ -40,7 +40,14 @@ const handleUserImg = (e) => {
 
   const handleCloseModal =()=> {
       setFile(null)
+      setFileData(null)
       handleClose()
+  }
+
+  const handlePostCloseModal = (postInfo, handleClose, fileData)=> {
+    newPost(postInfo, handleClose, fileData)
+    setFileData(null)
+    setFile(null)
   }
 
   return (
@@ -118,7 +125,7 @@ const handleUserImg = (e) => {
           <button
             variant="primary"
             className="p-1 post-btn font-weight-normal px-2"
-            onClick={() =>newPost(postInfo, handleClose, fileData)}
+            onClick={() =>handlePostCloseModal(postInfo, handleClose, fileData)}
           >
             Post
           </button>

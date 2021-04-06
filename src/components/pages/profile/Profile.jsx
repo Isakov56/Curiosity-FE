@@ -6,8 +6,8 @@ import ProfileMain from "./profilemain/ProfileMain";
 import { useDispatch } from "react-redux";
 import { Modal, InputGroup, FormControl, Form } from "react-bootstrap";
 import "./profile.scss";
-import { connect } from "react-redux";
 import { fetchCurrentUser, editCurrentUserInfo, fetchAllUsers, fetchCurrentUserPosts} from "../../../store";
+import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   return {
