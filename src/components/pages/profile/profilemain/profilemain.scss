@@ -51,6 +51,10 @@
     width: 100%;
 }
 
+.activity-nav-container.active{
+    border-bottom: 2px solid #e84723;
+}
+
 .activity-nav:hover{
     background-color: rgba(211, 211, 211, 0.308);
     text-decoration: none;

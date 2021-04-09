@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => {
  function Posts({ fetchCurrentUserPosts, posts }) {
 
     useEffect(() => {
-        //fetchCurrentUserPosts()
+        fetchCurrentUserPosts()
       }, []);
     
     const [show, setShow] = useState(false);

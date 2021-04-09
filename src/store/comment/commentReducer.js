@@ -6,7 +6,7 @@ const initialState = {
     error: ''
 }
 
-const userReducer = (state = initialState, action) => {
+const commentReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_COMMENT_REQUEST: 
             return {
@@ -29,4 +29,4 @@ const userReducer = (state = initialState, action) => {
     }
 }
 
-export default userReducer
+export default commentReducer

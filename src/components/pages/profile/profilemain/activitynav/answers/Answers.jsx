@@ -1,10 +1,27 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import AnswersCard from './AnswersCard'
 import {Dropdown} from "react-bootstrap"
 import "./answers.scss"
+import { connect } from "react-redux";
+import { fetchCurrentUserAnswers } from "../../../../../../store";
 
-export default function Answers() {
+const mapStateToProps = (state) => {
+  return {
+    currentUserAnswers: state?.answer?.userAnswers
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchCurrentUserAnswers: () => dispatch(fetchCurrentUserAnswers()),
+  }
+}
+
+function Answers({fetchCurrentUserAnswers}) {
     const [mostRecent, setMostRecent ] = useState(false)
+    useEffect(() => {
+        fetchCurrentUserAnswers()
+    }, [])
     return (
         <div>
             <div className="d-flex justify-content-between my-2">
@@ -21,7 +38,8 @@ export default function Answers() {
                 </Dropdown>
             </div>
             <AnswersCard />
-            <AnswersCard />
         </div>
     )
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Answers);

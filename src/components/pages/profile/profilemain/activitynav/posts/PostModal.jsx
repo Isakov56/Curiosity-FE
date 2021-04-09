@@ -12,7 +12,7 @@ import { newPost, addPostImage } from "../../../../../../store";
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state?.post?.currentUserPosts
+    currentUser: state?.user?.currentUser
   };
 };
 
@@ -22,7 +22,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-function PostModal({ show, handleClose, newPost }) {
+function PostModal({ show, handleClose, newPost, currentUser}) {
   const [anyone, setAnyone] = useState(true);
   const [file, setFile] = useState();
   const [fileData, setFileData] = useState()
@@ -58,10 +58,10 @@ const handleUserImg = (e) => {
         </Modal.Header>
         <Modal.Body>
           <div className="d-flex align-items-center">
-            <i className="fas fa-user-circle user-img-question mr-2"></i>
+            {currentUser?.image ? <img src={currentUser.image} className="post-user-img mr-2"/> : <i className="fas fa-user-circle user-img-question mr-2"></i>}
             <div className="">
               <Link to="#" className="text-dark">
-                <h5 className="m-0">Name Surname</h5>
+                <h5 className="m-0">{currentUser?.name} {currentUser?.surname}</h5>
               </Link>
               <Dropdown>
                 <Dropdown.Toggle

@@ -3,7 +3,7 @@ import Answers from './activitynav/answers/Answers'
 import Questions from './activitynav/questions/Questions'
 import Posts from './activitynav/posts/Posts'
 import Followers from './activitynav/followers/Followers'
-import { Link } from 'react-router-dom'
+import { Link, useLocation} from 'react-router-dom'
 import {Route} from 'react-router-dom'
 import './profilemain.scss'
 import { useSelector } from 'react-redux'
@@ -24,6 +24,8 @@ return {
 
 function ProfileMain({handleShow, handleNameModalShow, handleQualificationModalShow, handleDescriptionModalShow, editUserImg}) {
     const currentUser = useSelector(state => state.user.currentUser)
+
+    const routerLocation = useLocation()
 
     const handleEdit = () =>{
         handleNameModalShow()
@@ -118,24 +120,24 @@ function ProfileMain({handleShow, handleNameModalShow, handleQualificationModalS
                 }
             </div>
             <div className="d-flex border-bottom pt-1">
-                    <Link to="/profile/answers" className="activity-nav-container pb-1 mr-3">
-                        <span className=" p-1 text-secondary activity-nav"> answers</span> 
+                    <Link to="/profile/answers" className={`activity-nav-container pb-1 mr-3 ${routerLocation.pathname === '/profile/answers' ? 'active' : ''}`}>
+                        <span className={` p-1 text-secondary activity-nav answers`}>answers</span> 
                     </Link>
                
-                    <Link to="/profile/questions" className="activity-nav-container pb-1 mr-3">
+                    <Link to="/profile/questions" className={`activity-nav-container pb-1 mr-3 ${routerLocation.pathname === '/profile/questions' ? 'active' : ''}`}>
                         <span className=" p-1 text-secondary activity-nav">questions</span>  
                     </Link>
                 
                 
-                    <Link to="/profile/posts" className="activity-nav-container pb-1 mr-3">
+                    <Link to="/profile/posts" className={`activity-nav-container pb-1 mr-3 ${routerLocation.pathname === '/profile/posts' ? 'active' : ''}`}>
                         <span className=" p-1 text-secondary activity-nav">posts</span>  
                     </Link>
 
-                    <Link to="/profile/followers" className="activity-nav-container pb-1 mr-3">
+                    <Link to="/profile/followers" className={`activity-nav-container pb-1 mr-3 ${routerLocation.pathname === '/profile/followers' ? 'active' : ''}`}>
                         <span  className=" p-1 text-secondary activity-nav"> followers</span> 
                     </Link>
                 
-                    <Link to="#" className="activity-nav-container pb-1 mr-3">
+                    <Link to="/profile/following" className={`activity-nav-container pb-1 mr-3 ${routerLocation.pathname === '/profile/following' ? 'active' : ''}`}>
                         <span className=" p-1 text-secondary activity-nav"> following </span>
                     </Link>
             </div>

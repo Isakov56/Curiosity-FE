@@ -29,7 +29,7 @@ function Profile ({ currentUser, fetchCurrentUser, editCurrentUserInfo, fetchAll
   useEffect(() => {
     fetchCurrentUser()
     fetchAllUsers()
-    fetchCurrentUserPosts()
+    //fetchCurrentUserPosts()
     // console.log(localStorage.getItem("JWTToken"), "my TTTTTTTTTTTTTTTT");
   }, []);
 
