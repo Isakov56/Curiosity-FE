@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-function Answers({fetchCurrentUserAnswers}) {
+function Answers({fetchCurrentUserAnswers, currentUserAnswers}) {
     const [mostRecent, setMostRecent ] = useState(false)
     useEffect(() => {
         fetchCurrentUserAnswers()
@@ -25,7 +25,7 @@ function Answers({fetchCurrentUserAnswers}) {
     return (
         <div>
             <div className="d-flex justify-content-between my-2">
-                <h6 className="m-0 d-flex align-items-center">2 answers</h6>
+                <h6 className="m-0 d-flex align-items-center">{currentUserAnswers?.length} answers</h6>
                 <Dropdown>
                     <Dropdown.Toggle variant="success" id="dropdown-basic" className='px-2 p-0 h6'>
                         {mostRecent ? "Most recent" : "All"}
@@ -37,7 +37,7 @@ function Answers({fetchCurrentUserAnswers}) {
                     </Dropdown.Menu>
                 </Dropdown>
             </div>
-            <AnswersCard />
+            <AnswersCard fetchCurrentUserAnswers={fetchCurrentUserAnswers}/>
         </div>
     )
 }

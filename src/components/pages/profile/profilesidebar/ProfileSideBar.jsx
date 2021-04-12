@@ -38,7 +38,7 @@ export default function ProfileSideBar({handleShow, handleQualificationModalShow
                 </div>
                 <div>
                     <h6 className="border-bottom py-2 mt-5">Posts</h6>
-                    <div className="d-flex justify-content-center aling-itens-center post-box w-100 border my-2">
+                    <div className="d-flex justify-content-center aling-items-center post-box w-100 border my-2">
                         <i className="fas fa-plus-circle align-self-center" onClick={handlePostModalShow}></i>
                     </div>
                 </div>

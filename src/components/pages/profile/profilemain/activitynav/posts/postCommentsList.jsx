@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-function PostCommentsList({postId, currentUser, setCommentContent, commentContent, fetchCurrentPostComments, addComment, showLoadMoreBtn, setShowLoadMoreBtn}) {
+function PostCommentsList({postId, currentUser, setCommentContent, commentContent, showTwoComments, addComment, showLoadMoreBtn, setShowTwoComments, setShowLoadMoreBtn}) {
     const  [comments, setComments] = useState([])
     const fetchComments = () => {
  
@@ -51,7 +51,6 @@ function PostCommentsList({postId, currentUser, setCommentContent, commentConten
     }, [])
 
     const currentPostComments = useSelector(state => state?.comment?.postComments)
-    const [showTwoComments, setShowTwoComments] = useState(2)
     
 
     return (
@@ -96,9 +95,14 @@ function PostCommentsList({postId, currentUser, setCommentContent, commentConten
                 </div> 
                 ) : ""}
             </div>
+            {showTwoComments !== comments?.length ? <div className="d-flex justify-content-center">
+                {comments?.length > 2 ? setShowLoadMoreBtn(true) : setShowLoadMoreBtn(false)}
+                {showLoadMoreBtn ? <div className="load-more-comments d-flex justify-content-center mb-2" onClick={() => { comments?.length <=  showTwoComments ? setShowTwoComments(showTwoComments + 1) : setShowTwoComments(showTwoComments + 2)}}>load more</div> : ""}
+            </div> : 
             <div className="d-flex justify-content-center">
-                {showLoadMoreBtn ? <div className="load-more-comments d-flex justify-content-center mb-2" onClick={() => setShowTwoComments(showTwoComments + 2)}>load more</div> : ''}
-            </div>
+                <div className="load-more-comments d-flex justify-content-center mb-2" onClick={() => { comments?.length === 3 ||  comments?.length <=  showTwoComments ? setShowTwoComments(showTwoComments - 1) : setShowTwoComments(showTwoComments - 2)}}>show less</div>
+
+            </div>}
         </div>
     )
 }

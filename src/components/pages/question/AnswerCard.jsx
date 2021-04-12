@@ -1,32 +1,44 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./SpecificQuestion.scss";
 import SingleAnswer from "./SingleAnswer";
 import { connect } from "react-redux";
-import { fetchCurrentUserAnswers } from "../../../store";
+import { fetchCurrentQuestionAnswers } from "../../../store";
 
 const mapStateToProps = (state) => {
   return {
-    currentUserAnswers: state?.answer?.userAnswers,
+    //currentQuestionAnswers: state?.answer?.questionAnswers,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchCurrentUserAnswers: () => dispatch(fetchCurrentUserAnswers()),
+    fetchCurrentQuestionAnswers: (questionId) => dispatch(fetchCurrentQuestionAnswers(questionId)),
   };
 };
 
-function AnswerCard({ currentUserAnswers, fetchCurrentUserAnswers }) {
+function AnswerCard({ fetchCurrentQuestionAnswers, myQuestion, getQuestion }) {
+    const currentQuestionAnswers = myQuestion?.answers
   return (
     <div>
-        <h6 className="border-top m-0 border-bottom py-1">21 Answer</h6>
-      {currentUserAnswers
-        ?.slice(0)
-        ?.reverse()
-        ?.map((answer, key) => (
-          <SingleAnswer answer={answer} />
-        ))}
-      
+        {currentQuestionAnswers?.length > 0 ? <div>
+          <h6 className="border-top m-0 border-bottom py-1">{currentQuestionAnswers?.length} Answers</h6>
+          
+          <div>
+          {currentQuestionAnswers
+              ?.slice(0)
+              ?.reverse()
+              ?.map((answer, key) => (
+              <SingleAnswer answer={answer} question={myQuestion} getQuestion={getQuestion}/>
+              ))}
+          </div>  
+        </div> : 
+        <div className="no-answer d-flex justify-content-center align-items-center border-top border-bottom">
+          <div className=" d-flex flex-column">
+            <i className="fas fa-pen text-center pen mb-2"></i>
+            <span>No answers yet</span>
+          </div>
+        </div>
+        }
     </div>
   );
 }

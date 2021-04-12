@@ -24,12 +24,14 @@ const mapDispatchToProps = (dispatch) => {
 
 function PostModal({ show, handleClose, newPost, currentUser}) {
   const [anyone, setAnyone] = useState(true);
-  const [file, setFile] = useState();
-  const [fileData, setFileData] = useState()
   const [postInfo, setPostInfo] = useState({
     title: null,
     content: null,
   });
+  const [file, setFile] = useState();
+  const [fileData, setFileData] = useState()
+
+  console.log(fileData, "MYFFFFFFFLLLLLLLLLLLLLLLLPPPPPPPPPPPPPPP")
 
 const handleUserImg = (e) => {
     const formData = new FormData();

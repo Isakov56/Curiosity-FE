@@ -1,4 +1,4 @@
-import {FETCH_ANSWER_REQUEST, FETCH_QUESTION_ANSWERS_SUCCESS, FETCH_ANSWER_FAILURE, FETCH_USER_ANSWERS_SUCCESS} from './answerTypes'
+import {FETCH_ANSWER_REQUEST, FETCH_QUESTION_ANSWERS_SUCCESS, FETCH_ANSWER_FAILURE, FETCH_USER_ANSWERS_SUCCESS, FETCH_ALL_ANSWERS} from './answerTypes'
 
 import axios from 'axios'
 
@@ -19,6 +19,13 @@ export const fetchUserAnswersSuccess = userAnswers=>{
     return {
         type: FETCH_USER_ANSWERS_SUCCESS,
         payload: userAnswers
+    }
+}
+
+export const fetchAllAnswersSuccess = allAnswers=>{
+    return {
+        type: FETCH_ALL_ANSWERS,
+        payload: allAnswers
     }
 }
 
@@ -45,6 +52,22 @@ export const fetchCurrentQuestionAnswers = (questionId) => {
     }
 }
 
+export const fetchAllAnswers = () => {
+    return (dispatch) => {
+      dispatch(fetchAnswerRequest())
+      axios.get(`http://localhost:3003/api/answers/get/all/answers`, {
+                headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
+            })
+            .then(res => {
+                const allAnswers = res.data
+                dispatch(fetchAllAnswersSuccess(allAnswers))
+            })
+            .catch(err => {
+                dispatch(fetchAnswerFailure(err.message))
+            })
+    }
+}
+
 export const fetchCurrentUserAnswers = () => {
     return (dispatch) => {
         dispatch(fetchAnswerRequest())
@@ -61,15 +84,43 @@ export const fetchCurrentUserAnswers = () => {
     }
 }
 
-export const addAnswer = (questionId, answerContent, handleClose) => {
-    console.log('here iamamamamamamamam amam')
+export const addAnswer = (questionId, answerContent, handleClose, file) => {
+    console.log(file, 'myFiLLLLLLLLLLEee')
     return (dispatch) => {
       dispatch(fetchAnswerRequest())
       axios.post(`http://localhost:3003/api/answers/${questionId}/add`, answerContent, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(
-                axios.get(`http://localhost:3003/api/answers/${questionId}`, {
+                res => { 
+                    {file ? 
+                    axios.put(`http://localhost:3003/api/answers/${res.data._id}/editAnswerImage`, file, {
+                        headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
+                    })
+                    .then(res => {dispatch(fetchQuestionAnswersSuccess(res.data))}) : 
+                    axios.get(`http://localhost:3003/api/answers/getAll/me`, {
+                        headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
+                    })
+                    .then(res => {dispatch(fetchQuestionAnswersSuccess(res.data))
+                    })
+                }
+                }, 
+                handleClose()
+            )
+            .catch(err => {
+                dispatch(fetchAnswerFailure(err.message))
+            })
+    }
+}
+
+export const deleteAnswer = (questionId, answerId) => {
+    return (dispatch) => {
+      dispatch(fetchAnswerRequest())
+      axios.delete(`http://localhost:3003/api/answers/${questionId}/${answerId}`, {
+                headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
+            })
+            .then(
+                axios.get(`http://localhost:3003/api/answers/getAll/me`, {
                     headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
                 })
                 .then(res => {
@@ -78,7 +129,7 @@ export const addAnswer = (questionId, answerContent, handleClose) => {
                 })
                 .catch(err => {
                     dispatch(fetchAnswerFailure(err.message))
-                }), handleClose()
+                })
             )
             .catch(err => {
                 dispatch(fetchAnswerFailure(err.message))

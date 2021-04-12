@@ -1,9 +1,10 @@
-import {FETCH_ALL_QUESTIONS_SUCCESS, FETCH_QESTION_REQUEST, FETCH_QUESTION_FAILURE, FETCH_CURRENT_USER_QUESTIONS_SUCCESS} from './questionTypes'
+import {FETCH_ALL_QUESTIONS_SUCCESS, FETCH_QESTION_REQUEST, FETCH_QUESTION_FAILURE, FETCH_CURRENT_USER_QUESTIONS_SUCCESS, FETCH_ONE_QUESTION} from './questionTypes'
 
 const initialState = {
     loading: false,
     currentUserQuestions: [],
     allQuestions: [],
+    getQuestion: null,
     error: ''
 }
 
@@ -26,6 +27,13 @@ const questionReducer = (state = initialState, action) => {
                     loading: false,
                     ...state,
                     currentUserQuestions: action.payload,
+                    error: ''
+                }
+            case FETCH_ONE_QUESTION:
+                return {
+                    loading: false,
+                    ...state,
+                    getQuestion: action.payload,
                     error: ''
                 }
             case FETCH_QUESTION_FAILURE:

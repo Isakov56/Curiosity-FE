@@ -1,7 +1,22 @@
 import React, {useState} from 'react'
 import { Link} from "react-router-dom"
+import { Dropdown } from "react-bootstrap";
+import { connect } from "react-redux";
+import { deleteAnswer } from "../../../../../../store";
 
-export default function AnswersCard({answer}) {
+const mapStateToProps = (state) => {
+  return {
+    currentUserAnswers: state?.answer?.userAnswers
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteAnswer: (questionId, answerId) => dispatch(deleteAnswer(questionId, answerId)),
+  }
+}
+
+function AnswersCard({answer, deleteAnswer, fetchCurrentUserAnswers}) {
     
     return (
         <div>
@@ -24,6 +39,7 @@ export default function AnswersCard({answer}) {
                         </Link>
                         <span>{answer?.content}</span>
                     </div>
+                        <img src={answer?.image} alt="" className="w-100 my-1 mb-3"/>
                     <div className="d-flex align-items-center justify-content-between w-100">
                         <div className="d-flex align-items-center">
                             <div className="d-flex align-items-center answers-reaction px-3 py-1 justify-content-center mr-2">
@@ -34,7 +50,24 @@ export default function AnswersCard({answer}) {
                         </div>
                         <div className="d-flex justify-content-center answers-share-more">
                             <i class="fas fa-share p-2"></i>
-                            <i class="fas fa-ellipsis-h p-2"></i>
+                            {/* <i class="fas fa-ellipsis-h p-2"></i> */}
+                            <Dropdown>
+                                <Dropdown.Toggle
+                                    variant="success"
+                                    id="post-card-dropdaown"
+                                    className="p-0"
+                                >
+                                    <i class="fas fa-ellipsis-h p-2"></i>
+                                </Dropdown.Toggle>
+
+                                <Dropdown.Menu>
+                                    <Dropdown.Item href="#/action-1">Save</Dropdown.Item>
+                                    <Dropdown.Item href="" onClick={() => {deleteAnswer(answer?.question?._id, answer?._id); fetchCurrentUserAnswers()}}>
+                                    Delete
+                                    </Dropdown.Item>
+                                    <Dropdown.Item href="#/action-3">Edit</Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown>
                         </div>
                     </div>
                 </div>
@@ -44,3 +77,5 @@ export default function AnswersCard({answer}) {
         </div>
     )
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(AnswersCard);

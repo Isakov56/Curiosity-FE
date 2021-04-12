@@ -32,6 +32,7 @@ function SinglePost({ post, deletePost, fetchCurrentPostComments, handleLike, ad
     const [commentContent, setCommentContent] = useState({
         commentContent: null,
       });
+      const [showTwoComments, setShowTwoComments] = useState(2)
   const [contentLength, setContentLength] = useState(true);
   const [showLoadMoreBtn, setShowLoadMoreBtn] = useState(false);
   const [showComments, setShowComments] = useState(false);
@@ -40,6 +41,10 @@ function SinglePost({ post, deletePost, fetchCurrentPostComments, handleLike, ad
     deletePost(postId);
     fetchCurrentUserPosts();
   };
+  const handleLoadMore = () => {
+    setShowComments(false)
+    setShowTwoComments(2)
+  }
   return (
     <div className=" answers-card border-bottom" >
       <div
@@ -86,17 +91,16 @@ function SinglePost({ post, deletePost, fetchCurrentPostComments, handleLike, ad
                 className="far fa-thumbs-up pr-2 mr-2 border-right"
                 onClick={() => handleLike(post?._id)}
               >
-                <span>{post?.likes?.length}</span>
+                <span></span>
               </i>
               <i className="far fa-thumbs-down"></i>
             </div>
             <i
               className="far fa-comment p-2"
               onClick={() => {
-              setShowComments(true)
-                setTimeout(() => {
-                  setShowLoadMoreBtn(true);
-                }, 500);
+              {showComments ? handleLoadMore() : setShowComments(true)};
+              {post?.comments?.length > 2 ? setShowLoadMoreBtn(true) : setShowLoadMoreBtn(false)}; 
+              
               }}
             ></i>
           </div>
@@ -135,6 +139,9 @@ function SinglePost({ post, deletePost, fetchCurrentPostComments, handleLike, ad
           fetchCurrentPostComments={fetchCurrentPostComments}
           addComment={addComment}
           showLoadMoreBtn={showLoadMoreBtn}
+          setShowLoadMoreBtn={setShowLoadMoreBtn}
+          showTwoComments={showTwoComments}
+          setShowTwoComments={setShowTwoComments}
           setShowLoadMoreBtn={setShowLoadMoreBtn}
         />}
       </div>

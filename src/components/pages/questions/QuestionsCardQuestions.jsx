@@ -1,24 +1,28 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-export default function QuestionsCardQuestions() {
+export default function QuestionsCardQuestions({allQuestions}) {
     return (
-        <div>
+        <div>{
+            allQuestions.map((question, key) =>(
             <div className="answers-card questions d-flex border-top p-2 border-bottom">
                 <div className="d-flex flex-column align-items-start" style={{width: "100%"}}>
                     <div className="d-flex align-items-center">
-                        <i className="fas fa-user-circle user-img-question mr-2"></i>
+                        {   question?.user?.image ? <img src={question?.user?.image} alt="" className="user-img-question-main mr-2"/> :
+                            <i className="fas fa-user-circle user-img-question-main mr-2"></i>
+                        }
                         <div className="">
                             <Link to="#" className="text-dark">
-                                <h6 className="m-0">Name Surname</h6>
+                                <h6 className="m-0">{question?.user?.name} {question?.user?.surname}</h6>
                             </Link>
-                            <span>qualification</span>
+                            <span>{question?.user?.jobQualification}</span>
                         </div>
                     </div>
                     <div className="my-2">
-                        <Link to="#" className="text-dark">
-                            <h5>How are you doing today?</h5>
+                        <Link to={`/questions/${question?._id}`} className="text-dark">
+                            <h5>{question?.question}</h5>
                         </Link>
+                        <span className="text-secondary">{question?.answers?.length} {question?.answers?.length === 1 ? 'Answer' : "Answers"}</span>
                     </div>
                     <div className="d-flex align-items-center justify-content-between w-100">
                         <div className="d-flex align-items-center questions-i">
@@ -38,6 +42,8 @@ export default function QuestionsCardQuestions() {
                     </div>
                 </div>
             </div>
+            ))
+            }
         </div>
     )
 }

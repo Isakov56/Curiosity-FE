@@ -1,11 +1,9 @@
 import React, {useState, useEffect} from 'react'
-import QuestionsCard from "./QuestionsCard"
-import QuestionModal from "./QuestionModal"
-import { Link } from 'react-router-dom'
-import {Modal, Button, Dropdown} from 'react-bootstrap'
-import "./questions.scss"
-import { fetchCurrentUserQuestions, newQuestion, deleteQuestion, editQuestion } from "../../../../../../store";
+import {Modal, Dropdown} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 import { connect } from "react-redux";
+import { fetchCurrentUserQuestions, newQuestion, deleteQuestion, editQuestion } from "../../../../../../store";
+
 
 const mapStateToProps = (state) => {
   return {
@@ -18,30 +16,22 @@ const mapDispatchToProps = dispatch => {
     fetchCurrentUserQuestions: () => dispatch(fetchCurrentUserQuestions()),
     newQuestion: (data, handleClose) => dispatch(newQuestion(data, handleClose)),
     editQuestion: (questionId, modefiedData, handleClose, setNewQuestionState) => dispatch(editQuestion(questionId, modefiedData, handleClose, setNewQuestionState)),
-    deleteQuestion: (questionId) => dispatch(deleteQuestion(questionId)),
   }
 }
 
-function Questions({fetchCurrentUserQuestions, currentUser, newQuestion, editQuestion}) {
+function QuestionModal({fetchCurrentUserQuestions, newQuestion, editQuestion, currentUser, handleClose, show}) {
     useEffect(() => {
         fetchCurrentUserQuestions()
     }, []);
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
+    const [newQuestionState, setNewQuestionState] = useState({question: "?"})
+    const [currentQuestion, setCurrentQuestion] = useState()
+    const [questionContent, setQuestionContent] = useState(null)
+    const [anyone, setAnyone] = useState(true);
+    
     return (
         <div>
-            <div className="d-flex justify-content-between my-2">
-                <h6 className="m-0 d-flex align-items-center">2 questions</h6>
-                <div>
-                    <button className="make-post-btn p-1" onClick={() => handleShow()}>Ask question</button>
-                </div>
-            </div>
-            <QuestionsCard/>
-            <QuestionModal  handleShow={handleShow} handleClose={handleClose} show={show}/>
-            {/* <Modal show={show} onHide={handleClose}>
+            <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                 <Modal.Title>Ask Question</Modal.Title>
                 </Modal.Header>
@@ -93,10 +83,10 @@ function Questions({fetchCurrentUserQuestions, currentUser, newQuestion, editQue
                     Post
                 </button>
                 </Modal.Footer>
-            </Modal> */}
+            </Modal>
         </div>
     )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Questions);
+export default connect(mapStateToProps, mapDispatchToProps)(QuestionModal);
 
