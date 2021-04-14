@@ -42,7 +42,7 @@ const handleUserImg = (e) => {
   };
   const getQuestion = async () => {
     const res = await axios.get(
-      `http://localhost:3003/api/questions/${questionId}`
+      `${process.env.REACT_APP_BE_URL}/questions/${questionId}`
     );
     setMyQuestion(res.data);
   };
