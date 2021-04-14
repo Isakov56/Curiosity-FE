@@ -1,13 +1,11 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import ProfileSideBar from "./profilesidebar/ProfileSideBar";
-import ProfileMain from "./profilemain/ProfileMain";
-import { useDispatch } from "react-redux";
-import { Modal, InputGroup, FormControl, Form } from "react-bootstrap";
-import "./profile.scss";
-import { fetchCurrentUser, editCurrentUserInfo, fetchAllUsers, fetchCurrentUserPosts} from "../../../store";
+import React, { useEffect, useState } from "react";
+import { Form, FormControl, InputGroup, Modal } from "react-bootstrap";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { editCurrentUserInfo, fetchAllUsers, fetchCurrentUser, fetchCurrentUserPosts } from "../../../store";
+import "./profile.scss";
+import ProfileMain from "./profilemain/ProfileMain";
+import ProfileSideBar from "./profilesidebar/ProfileSideBar";
 
 const mapStateToProps = (state) => {
   return {

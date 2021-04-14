@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
-import { Link} from "react-router-dom"
+import React from 'react';
 import { Dropdown } from "react-bootstrap";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { deleteAnswer } from "../../../../../../store";
 
 const mapStateToProps = (state) => {

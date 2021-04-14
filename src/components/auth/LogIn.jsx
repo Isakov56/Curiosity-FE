@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
-import { useHistory, Link } from "react-router-dom";
-import { fetchUser } from '../../store'
+import React, { useState } from "react";
+import { Alert, Button, Form } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
 
 export default function SignIn() {
   const [email, setEmail] = useState("");

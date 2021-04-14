@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Dropdown, Form, FormControl } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { connect } from "react-redux";
 import axios from "axios";
-import PostCommentsList from "./PostCommentsList";
+import React, { useState } from "react";
+import { connect, useSelector } from "react-redux";
 import {
-  deletePost,
-  fetchCurrentUserPosts,
-  fetchCurrentPostComments,
-  handleLike,
-  addComment,
+  addComment, deletePost,
+
+  fetchCurrentPostComments, fetchCurrentUserPosts,
+
+  handleLike
 } from "../../../../../../store";
 import SinglePost from "./SinglePost";
 
