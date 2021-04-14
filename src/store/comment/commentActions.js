@@ -25,7 +25,7 @@ export const fetchCommentFailure =error=>{
 export const fetchCurrentPostComments = (postId) => {
     return (dispatch) => {
       dispatch(fetchCommentRequest())
-      axios.get(`http://localhost:3003/api/comments/${postId}`, {
+      axios.get(`${process.env.REACT_APP_BE_URL}/comments/${postId}`, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(res => {
@@ -42,7 +42,7 @@ export const addComment = (postId, commentContent) => {
     return (dispatch) => {
         dispatch(fetchCommentRequest())
         //console.log(commentContent, postId, "commmenenenrtttntnntmtmttcontent")
-        axios.post(`http://localhost:3003/api/comments/${postId}/add`, commentContent, {
+        axios.post(`${process.env.REACT_APP_BE_URL}/comments/${postId}/add`, commentContent, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(res => {
@@ -59,7 +59,7 @@ export const deleteComment = (postId, commentContent) => {
     return (dispatch) => {
         dispatch(fetchCommentRequest())
         //console.log(commentContent, postId, "commmenenenrtttntnntmtmttcontent")
-        axios.post(`http://localhost:3003/api/comments/${postId}/add`, commentContent, {
+        axios.post(`${process.env.REACT_APP_BE_URL}/comments/${postId}/add`, commentContent, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(res => {

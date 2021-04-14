@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux'
 import "./navbar.scss";
+import { getCookie } from "../../helpers/cookies";
 import { InputGroup, FormControl, Button, Dropdown } from "react-bootstrap";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
 function NavBar() {;
   
-    const currentUser = useSelector(state => state.user.currentUser )
+  const currentUser = useSelector(state => state.user.currentUser )
   const history = useHistory();
   const routerLocation = useLocation();
   const [showNav, setShowNav] = useState(true);
   const [location, setLocation] = useState(["/login", "/signup"]);
-  console.log(history.location.pathname, "lllllllllllllllll");
+  console.log(getCookie("token"), "lllllllllllllllllhdhdhdhdgdhhdghdghdghdghdghdggdghdghdghdghdghdghdgg");
 
   const signedHandler = () => {
     setLocation(["/login", "signup"]);
@@ -47,22 +48,22 @@ function NavBar() {;
         <div className="nav-container-child d-flex justify-content-between align-items-center">
           <div className="mr-4">
             {/* <img id="logo" src="https://res.cloudinary.com/de6vmr2ma/image/upload/v1617821985/logo/LogoMakr-2ekfkU_gmk2pl.png" alt=""/> */}
-            <Link style={{textDecoration: "none"}} to="/home">
+            <Link style={{textDecoration: "none"}} to="/">
                 <h1 className="main-logo">Curiosity</h1>
             </Link>
           </div>
           <div className="d-flex main-icons-container align-items-center myMy">
             <Link
-              to="/home"
+              to="/"
               className={`nav-icon-link ${
-                routerLocation.pathname === "/home"
+                routerLocation.pathname === "/"
                   ? "nav-icon-link-active"
                   : ""
               }`}
             >
               <i
                 className={`fas fa-home nav-icon py-2 px-3 my-1 ${
-                  routerLocation.pathname === "/home" ? "active" : ""
+                  routerLocation.pathname === "/" ? "active" : ""
                 }`}
               ></i>
             </Link>

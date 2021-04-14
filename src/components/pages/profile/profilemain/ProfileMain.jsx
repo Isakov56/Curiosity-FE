@@ -3,9 +3,11 @@ import Answers from './activitynav/answers/Answers'
 import Questions from './activitynav/questions/Questions'
 import Posts from './activitynav/posts/Posts'
 import Followers from './activitynav/followers/Followers'
+import ProtectedRoute from "../../../../customComponents/ProtectedRoute";
 import { Link, useLocation} from 'react-router-dom'
 import {Route} from 'react-router-dom'
 import './profilemain.scss'
+import {BrowserRouter as Router} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { editUserImg } from "../../../../store";
 import { connect } from "react-redux";
@@ -141,10 +143,10 @@ function ProfileMain({handleShow, handleNameModalShow, handleQualificationModalS
                         <span className=" p-1 text-secondary activity-nav"> following </span>
                     </Link>
             </div>
-            <Route path="/profile/questions" exact component={Questions} />
-            <Route path="/profile/answers" exact component={Answers} />
-            <Route path="/profile/posts" exact component={Posts} />
-            <Route path="/profile/followers" exact component={Followers} />
+                <Route path="/profile/questions" exact component={Questions} />
+                <Route path="/profile/answers" exact component={Answers} />
+                <Route path="/profile/posts" exact component={Posts} />
+                <Route path="/profile/followers" exact component={Followers} />
         </div>
     )
 }

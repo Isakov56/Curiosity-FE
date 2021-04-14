@@ -39,7 +39,8 @@ export const fetchAnswerFailure =error=>{
 export const fetchCurrentQuestionAnswers = (questionId) => {
     return (dispatch) => {
       dispatch(fetchAnswerRequest())
-      axios.get(`http://localhost:3003/api/answers/${questionId}`, {
+      //`${process.env.DEPLOYED_BE_URL}/users/me`
+      axios.get(`${process.env.REACT_APP_BE_URL}/answers/${questionId}`, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(res => {
@@ -55,7 +56,7 @@ export const fetchCurrentQuestionAnswers = (questionId) => {
 export const fetchAllAnswers = () => {
     return (dispatch) => {
       dispatch(fetchAnswerRequest())
-      axios.get(`http://localhost:3003/api/answers/get/all/answers`, {
+      axios.get(`${process.env.REACT_APP_BE_URL}/answers/get/all/answers`, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(res => {
@@ -71,7 +72,7 @@ export const fetchAllAnswers = () => {
 export const fetchCurrentUserAnswers = () => {
     return (dispatch) => {
         dispatch(fetchAnswerRequest())
-        axios.get(`http://localhost:3003/api/answers/getAll/me`, {
+        axios.get(`${process.env.REACT_APP_BE_URL}/answers/getAll/me`, {
             headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
         })
         .then(res => {
@@ -88,17 +89,17 @@ export const addAnswer = (questionId, answerContent, handleClose, file) => {
     console.log(file, 'myFiLLLLLLLLLLEee')
     return (dispatch) => {
       dispatch(fetchAnswerRequest())
-      axios.post(`http://localhost:3003/api/answers/${questionId}/add`, answerContent, {
+      axios.post(`${process.env.REACT_APP_BE_URL}/${questionId}/add`, answerContent, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(
                 res => { 
                     {file ? 
-                    axios.put(`http://localhost:3003/api/answers/${res.data._id}/editAnswerImage`, file, {
+                    axios.put(`${process.env.REACT_APP_BE_URL}/${res.data._id}/editAnswerImage`, file, {
                         headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
                     })
                     .then(res => {dispatch(fetchQuestionAnswersSuccess(res.data))}) : 
-                    axios.get(`http://localhost:3003/api/answers/getAll/me`, {
+                    axios.get(`${process.env.REACT_APP_BE_URL}/getAll/me`, {
                         headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
                     })
                     .then(res => {dispatch(fetchQuestionAnswersSuccess(res.data))
@@ -116,11 +117,11 @@ export const addAnswer = (questionId, answerContent, handleClose, file) => {
 export const deleteAnswer = (questionId, answerId) => {
     return (dispatch) => {
       dispatch(fetchAnswerRequest())
-      axios.delete(`http://localhost:3003/api/answers/${questionId}/${answerId}`, {
+      axios.delete(`${process.env.REACT_APP_BE_URL}/${questionId}/${answerId}`, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(
-                axios.get(`http://localhost:3003/api/answers/getAll/me`, {
+                axios.get(`${process.env.REACT_APP_BE_URL}/getAll/me`, {
                     headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
                 })
                 .then(res => {

@@ -39,7 +39,7 @@ export const fetchPostFailure =error=>{
 export const fetchCurrentUserPosts = () => {
     return (dispatch) => {
       dispatch(fetchPostRequest())
-      axios.get('http://localhost:3003/api/posts/all/me', {
+      axios.get(`${process.env.REACT_APP_BE_URL}/posts/all/me`, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(res => {
@@ -54,16 +54,16 @@ export const fetchCurrentUserPosts = () => {
 export const newPost = (data, handleClose, file) => {
     return (dispatch) => {
       dispatch(fetchPostRequest())
-      axios.post('http://localhost:3003/api/posts/newPost', data, {
+      axios.post(`${process.env.REACT_APP_BE_URL}/posts/newPost`, data, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             //.then(res => {dispatch(fetchCurrentUserPostsSuccess(res.data))})
             .then(res => { {file ? 
-                axios.put(`http://localhost:3003/api/posts/${res.data._id}/editPostImg`, file, {
+                axios.put(`${process.env.REACT_APP_BE_URL}/posts/${res.data._id}/editPostImg`, file, {
                     headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
                 })
                 .then(res => {dispatch(fetchCurrentUserPostsSuccess(res.data))}) : 
-                axios.get(`http://localhost:3003/api/posts/all/me`, {
+                axios.get(`${process.env.REACT_APP_BE_URL}/posts/all/me`, {
                     headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
                 })
                 .then(res => {dispatch(fetchCurrentUserPostsSuccess(res.data))})
@@ -80,7 +80,7 @@ export const addPostImage = (data, postId) => {
     return (dispatch) => {
     //console.log( postId, "hellllllllnnnnnnnnnnoooooooo gggggggggggggggggggggg")
       dispatch(fetchPostRequest())
-      axios.put(`http://localhost:3003/api/posts/${postId}/editPostImg`, data, {
+      axios.put(`${process.env.REACT_APP_BE_URL}/posts/${postId}/editPostImg`, data, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then()
@@ -91,7 +91,7 @@ export const handleLike = (postId) => {
     console.log( postId, "hellllskjjdkjfkjskfj")
     return (dispatch) => {
       //dispatch(fetchPostRequest())
-      axios.post(`http://localhost:3003/api/posts/${postId}/like`, {
+      axios.post(`${process.env.REACT_APP_BE_URL}/posts/${postId}/like`, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             
@@ -101,11 +101,11 @@ export const handleLike = (postId) => {
 export const deletePost = (postId) => {
     return (dispatch) => {
       dispatch(fetchPostRequest())
-      axios.delete(`http://localhost:3003/api/posts/${postId}`, {
+      axios.delete(`${process.env.REACT_APP_BE_URL}/posts/${postId}`, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(
-                axios.get('http://localhost:3003/api/posts/all/me', {
+                axios.get(`${process.env.REACT_APP_BE_URL}/posts/all/me`, {
                     headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
                 })
                 .then(res => {

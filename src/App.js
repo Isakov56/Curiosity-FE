@@ -10,7 +10,11 @@ import NavBar from './components/navbar/NavBar'
 import SpecificQuestion from './components/pages/question/SpecificQuestion'
 import StickyBox from "react-sticky-box"
 import {Route} from 'react-router-dom'
+import { isAuthUser } from "./helpers/auth";
 import { useSelector, useDispatch } from 'react-redux'
+import ProtectedRoute from "./customComponents/ProtectedRoute";
+import {BrowserRouter as Router} from 'react-router-dom'
+
 import { connect } from "react-redux";
 import {
   fetchCurrentUser,
@@ -41,13 +45,16 @@ function App({currentUser, fetchCurrentUser}) {
   useEffect(() => {
     fetchCurrentUser();
     fetchAllUsers();
+    isAuthUser()
     //fetchCurrentUserPosts()
     // console.log(localStorage.getItem("JWTToken"), "my TTTTTTTTTTTTTTTT");
   }, []);
 
+  console.log(isAuthUser(), "coooooooooooooooooooooooooocki")
+
   return (
     <div className="App">
-      <StickyBox style={{zIndex: "99"}}>
+      {/* <StickyBox style={{zIndex: "99"}}>
         <NavBar/>
       </StickyBox>
       <Route path="/" exact>
@@ -62,8 +69,17 @@ function App({currentUser, fetchCurrentUser}) {
       <Route path="/questions" exact component={Questions} />
 
       <Route path="/login" exact component={LogIn} />
-      <Route path='/signup' exact component={SignUp} />
+      <Route path='/signup' exact component={SignUp} /> */}
       {/* <button onClick={() => dispatch(fetchUser())}>click</button> */}
+				<StickyBox style={{ zIndex: "99" }}>
+					<NavBar />
+				</StickyBox>
+				<Route path='/login' exact component={LogIn} />
+				<Route path='/signup' exact component={SignUp} />
+				<Route path='/' exact component={Home} />
+				<Route path='/profile' component={Profile} />
+				<Route path='/questions/:questionId' exact component={SpecificQuestion} />
+				<Route path='/questions' exact component={Questions} />
     </div>
   );
 }

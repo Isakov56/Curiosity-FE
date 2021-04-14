@@ -39,7 +39,7 @@ export const fetchQuestionFailure =error=>{
 export const fetchCurrentUserQuestions = () => {
     return (dispatch) => {
       dispatch(fetchQuestionRequest())
-      axios.get('http://localhost:3003/api/questions/all/me', {
+      axios.get(`${process.env.REACT_APP_BE_URL}/questions/all/me`, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(res => {
@@ -55,7 +55,7 @@ export const fetchCurrentUserQuestions = () => {
 export const getQuestion = (questionId) => {
     return (dispatch) => {
       dispatch(fetchQuestionRequest())
-      axios.get(`http://localhost:3003/api/questions/${questionId}`, {
+      axios.get(`${process.env.REACT_APP_BE_URL}/questions/${questionId}`, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(res => {
@@ -71,12 +71,12 @@ export const getQuestion = (questionId) => {
 export const newQuestion = (data, handleClose) => {
     return (dispatch) => {
       dispatch(fetchQuestionRequest())
-      axios.post('http://localhost:3003/api/questions/newQuestion', data, {
+      axios.post(`${process.env.REACT_APP_BE_URL}/questions/newQuestion`, data, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             //.then(res => {dispatch(fetchCurrentUserPostsSuccess(res.data))})
             .then(res => {
-                axios.get(`http://localhost:3003/api/questions/all/me`, {
+                axios.get(`${process.env.REACT_APP_BE_URL}/questions/all/me`, {
                     headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
                 })
                 .then(res => {dispatch(fetchCurrentUserQuestionssSuccess(res.data))})
@@ -91,11 +91,11 @@ export const newQuestion = (data, handleClose) => {
 export const deleteQuestion = (postId) => {
     return (dispatch) => {
       dispatch(fetchQuestionRequest())
-      axios.delete(`http://localhost:3003/api/questions/${postId}`, {
+      axios.delete(`${process.env.REACT_APP_BE_URL}/questions/${postId}`, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(
-                axios.get('http://localhost:3003/api/questions/all/me', {
+                axios.get(`${process.env.REACT_APP_BE_URL}/questions/all/me`, {
                     headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
                 })
                 .then(res => {
@@ -113,11 +113,11 @@ export const deleteQuestion = (postId) => {
 export const editQuestion = (questionId, modefiedData, handleClose, setNewQuestionState) => {
     return (dispatch) => {
       dispatch(fetchQuestionRequest())
-      axios.put(`http://localhost:3003/api/questions/${questionId}`, modefiedData, {
+      axios.put(`${process.env.REACT_APP_BE_URL}/questions/${questionId}`, modefiedData, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(res => {
-                axios.get(`http://localhost:3003/api/questions/all/me`, {
+                axios.get(`${process.env.REACT_APP_BE_URL}/questions/all/me`, {
                     headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
                 })
                 .then(res => {dispatch(fetchCurrentUserQuestionssSuccess(res.data))})
@@ -132,7 +132,7 @@ export const editQuestion = (questionId, modefiedData, handleClose, setNewQuesti
 export const fetchAllQuestions = () => {
     return (dispatch) => {
       dispatch(fetchQuestionRequest())
-      axios.get('http://localhost:3003/api/questions/all/me/questions', {
+      axios.get(`${process.env.REACT_APP_BE_URL}/questions/all/me/questions`, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(res => {

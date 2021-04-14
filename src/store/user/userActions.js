@@ -53,7 +53,7 @@ export const fetchCurrentUser = () => {
     return (dispatch) => {
         //console.log( "hellllllllnnnnnnnnnnoooooooo")
       dispatch(fetchUserRequest())
-      axios.get('http://localhost:3003/api/users/me', {
+      axios.get(`${process.env.REACT_APP_BE_URL}/users/me`, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(res => {
@@ -70,7 +70,7 @@ export const fetchAllUsers = () => {
     return (dispatch) => {
         //console.log( "hellllllllnnnnnnnnnnoooooooo")
       dispatch(fetchUserRequest())
-      axios.get('http://localhost:3003/api/users/', {
+      axios.get(`${process.env.REACT_APP_BE_URL}/users/`, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(res => {
@@ -88,7 +88,7 @@ export const editCurrentUserInfo = (userInfo, handleClose) => {
         //console.log(localStorage.getItem('JWTToken'), "hellllllllnnnnnnnnnnoooooooo")
       dispatch(fetchUserRequest())
       let payload = { name: 'donnie', surname: 'donnie' };
-      axios.put('http://localhost:3003/api/users/me', userInfo, {
+      axios.put(`${process.env.REACT_APP_BE_URL}/users/me`, userInfo, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(res => {
@@ -106,7 +106,7 @@ export const editUserImg = (file) => {
     return (dispatch) => {
         //console.log(localStorage.getItem('JWTToken'), "hellllllllnnnnnnnnnnoooooooo")
       //dispatch(fetchUserRequest())
-      axios.put('http://localhost:3003/api/users/me/update/image', file, {
+      axios.put(`${process.env.REACT_APP_BE_URL}/users/me/update/image`, file, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(res => {
