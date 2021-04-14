@@ -8,7 +8,7 @@ import {
 
   handleLike
 } from "../../../../../../store";
-import PostCommentsList from "./PostCommentsList";
+import PostCommentsList from "./Pclist";
   
   const mapStateToProps = (state) => {
     return {

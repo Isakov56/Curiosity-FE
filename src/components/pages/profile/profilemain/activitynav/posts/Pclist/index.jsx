@@ -1,9 +1,7 @@
-import React, {useEffect, useState} from 'react'
-import { useSelector } from 'react-redux'
-import { fetchCurrentPostComments, addComment } from "../../../../../../store";
-import {Form, FormControl } from 'react-bootstrap'
-import { connect } from "react-redux";
-import axios from 'axios'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Form, FormControl } from 'react-bootstrap';
+import { connect, useSelector } from 'react-redux';
 const mapStateToProps = (state) => {
   return {
     currentUser: state.user.currentUser,
@@ -50,9 +48,7 @@ function PostCommentsList({postId, currentUser, setCommentContent, commentConten
       fetchComments()
     }, [])
 
-    const currentPostComments = useSelector(state => state?.comment?.postComments)
-    
-
+ 
     return (
         <div>
 
