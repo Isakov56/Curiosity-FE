@@ -89,13 +89,13 @@ export const addAnswer = (questionId, answerContent, handleClose, file) => {
     console.log(file, 'myFiLLLLLLLLLLEee')
     return (dispatch) => {
       dispatch(fetchAnswerRequest())
-      axios.post(`${process.env.REACT_APP_BE_URL}/${questionId}/add`, answerContent, {
+      axios.post(`${process.env.REACT_APP_BE_URL}/answers/${questionId}/add`, answerContent, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(
                 res => { 
                     {file ? 
-                    axios.put(`${process.env.REACT_APP_BE_URL}/${res.data._id}/editAnswerImage`, file, {
+                    axios.put(`${process.env.REACT_APP_BE_URL}/answers/${res.data._id}/editAnswerImage`, file, {
                         headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
                     })
                     .then(res => {dispatch(fetchQuestionAnswersSuccess(res.data))}) : 
@@ -117,11 +117,11 @@ export const addAnswer = (questionId, answerContent, handleClose, file) => {
 export const deleteAnswer = (questionId, answerId) => {
     return (dispatch) => {
       dispatch(fetchAnswerRequest())
-      axios.delete(`${process.env.REACT_APP_BE_URL}/${questionId}/${answerId}`, {
+      axios.delete(`${process.env.REACT_APP_BE_URL}/answers/${questionId}/${answerId}`, {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(
-                axios.get(`${process.env.REACT_APP_BE_URL}/getAll/me`, {
+                axios.get(`${process.env.REACT_APP_BE_URL}/answers/getAll/me`, {
                     headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
                 })
                 .then(res => {
