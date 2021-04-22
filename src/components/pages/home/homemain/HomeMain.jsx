@@ -45,7 +45,7 @@ function HomeMain({fetchAllAnswers, fetchCurrentUserQuestions, currentUserQuesti
                 </div>
                 <div className="px-3 my-2 mb-3 ">
                     <span className="text-secondary">you recently asked</span>
-                    <Link to={`/questions/${currentUserQuestions[currentUserQuestions.length - 1]?._id}`} className="text-dark">
+                    <Link to={`/questions/${currentUserQuestions[currentUserQuestions?.length - 1]?._id}`} className="text-dark">
                     <h4>{currentUserQuestions[currentUserQuestions.length - 1]?.question}</h4>
                     </Link>
                 </div>

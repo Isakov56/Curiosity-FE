@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state?.user?.currentUser
+    currentUserQuestions: state?.question?.currentUserQuestions
   };
 };
 
@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-function Questions({fetchCurrentUserQuestions, currentUser, newQuestion, editQuestion}) {
+function Questions({fetchCurrentUserQuestions, currentUserQuestions, newQuestion, editQuestion}) {
     useEffect(() => {
         fetchCurrentUserQuestions()
     }, []);
@@ -34,7 +34,7 @@ function Questions({fetchCurrentUserQuestions, currentUser, newQuestion, editQue
     return (
         <div>
             <div className="d-flex justify-content-between my-2">
-                <h6 className="m-0 d-flex align-items-center">2 questions</h6>
+                <h6 className="m-0 d-flex align-items-center">{currentUserQuestions?.length} questions</h6>
                 <div>
                     <button className="make-post-btn p-1" onClick={() => handleShow()}>Ask question</button>
                 </div>
