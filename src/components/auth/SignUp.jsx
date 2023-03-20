@@ -46,7 +46,7 @@ function SignUp() {
     // })
 
     console.log('ggggggggggggggggggg')
-    let res = axios.post('https://curiosity-be.onrender.com/register', credentials)
+    let res = axios.post('https://curiosity-be.onrender.com/api/users/register', credentials)
     //let res = axios.post('http://localhost:3003/api/users/register', credentials)
       history.push("/login");
       
