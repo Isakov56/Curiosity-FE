@@ -1,5 +1,5 @@
-.questions-container{
-    width: 1002px;
+.questions-container.container-main-child{
+    width: 1002px !important;
 }
 
 .left-icons i{
@@ -17,6 +17,7 @@
 
 .question-main{
     background-color: white !important;
+    width: 10% !important;
 }
 
 .container-main-questions{
@@ -36,7 +37,7 @@
 }
 
 .question-container{
-    width: 1002px;
+    //width: 1002px;
 }
 
 .user-img-question-main{

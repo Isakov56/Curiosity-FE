@@ -25,7 +25,7 @@ function PostsCard({ fetchAllAnswers, answer, getQuestion, question }) {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae malesuada nunc. Integer ultricies diam et justo pellentesque tincidunt. Sed luctus commodo tortor, ac sagittis neque eleifend vitae. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque ullamcorper lacus sed risus sodales convallis eleifend in arcu. Donec at ipsum quis nisl ullamcorper aliquet. Aenean sed euismod libero, sit amet fringilla velit. Aenean in lacus fringilla, imperdiet nisl ut, efficitur ex. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In vel velit gravida, fringilla erat a, auctor nisi."
   );
   const [contentLength, setContentLength] = useState(true);
-  useEffect(() => {}, []);
+  // useEffect(() => {}, []);
   return (
     <div>
       <div className="home-post-card d-flex my-2 pt-3 rounded border">

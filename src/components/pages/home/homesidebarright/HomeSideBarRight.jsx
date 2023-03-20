@@ -3,26 +3,29 @@ import RecomList from './RecomList'
 import MostviewedList from './MostViewedList'
 import SidebarFooter from './SidebarFooter'
 import { connect } from "react-redux";
-import { fetchAllUsers } from "../../../../store";
+import { fetchAllUsers, fetchAllQuestions } from "../../../../store";
 
 const mapStateToProps = (state) => {
   return {
     allUsers: state?.user?.allUsers,
+    allQuestions: state?.question?.allQuestions
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchAllUsers: () => dispatch(fetchAllUsers()),
+    fetchAllQuestions: () => dispatch(fetchAllQuestions())
   }
 }
 
-function HomeSideBarRight({fetchAllUsers, allUsers}) {
+function HomeSideBarRight({fetchAllUsers, allUsers, allQuestions, fetchAllQuestions}) {
     useEffect(() => {
-        fetchAllUsers()
+        fetchAllUsers() 
+        fetchAllQuestions()
     }, [])
     return (
-        <div>
+        <div className="main-main-sidebar w-100">
             <div className=" recommendations-container w-100 rounded mb-2 border">
                 <h6 className="border-bottom px-2 py-2">Recomendations for you</h6>
                 <div className="pb-3">
@@ -32,9 +35,7 @@ function HomeSideBarRight({fetchAllUsers, allUsers}) {
             <div className=" recommendations-container w-100 rounded border mb-2">
                 <h6 className="border-bottom px-2 py-2">Today's most viewed</h6>
                 <div className="pb-3">
-                    <MostviewedList />
-                    <MostviewedList />
-                    <MostviewedList />
+                    <MostviewedList allQuestions={allQuestions} />
                 </div>
             </div>
 

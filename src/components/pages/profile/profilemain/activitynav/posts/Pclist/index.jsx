@@ -35,7 +35,7 @@ function PostCommentsList({postId, currentUser, setCommentContent, commentConten
             
             
         }
-        const deleteComment = (commentId) => {
+        const deleteComment = (commentId, postId) => {
      
                 axios.delete(`http://localhost:3003/api/comments/${postId}/${commentId}`, {
                     headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
@@ -85,8 +85,8 @@ function PostCommentsList({postId, currentUser, setCommentContent, commentConten
                             <span className="">{comment?.commentContent}</span>
                         </div>
                     </div>
-                    <div onclick={() =>{deleteComment(comment._id)}}>
-                        <i class="fas fa-trash-alt" onclick={() =>{deleteComment(comment._id)}}></i>
+                    <div onclick={()=>console.log('hii hello')} id="trash">
+                        <i class="fas fa-trash-alt" onclick={() =>{console.log('hii hello')}}></i>
                     </div>
                 </div> 
                 ) : ""}

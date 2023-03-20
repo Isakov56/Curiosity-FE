@@ -7,6 +7,7 @@ import AnswersCard from '../../profile/profilemain/activitynav/answers/AnswersCa
 import QuestionModal from '../../../pages/profile/profilemain/activitynav/questions/QuestionModal'
 import { connect } from "react-redux";
 import { fetchAllAnswers, fetchCurrentUserQuestions } from "../../../../store";
+import Cookies from 'js-cookie';
 
 const mapStateToProps = (state) => {
   return {
@@ -29,7 +30,11 @@ function HomeMain({fetchAllAnswers, fetchCurrentUserQuestions, currentUserQuesti
     useEffect(() => {
         fetchAllAnswers()
         fetchCurrentUserQuestions()
+        console.log(Cookies.get('isAuthUser'), "mylovleycookie")
+        console.log('eelllton')
     }, [])
+    // console.log('test')
+    // console.log('tes1223t')
     const currentUser = useSelector(state => state?.user?.currentUser)
     return (
         <div className="home-main-container">

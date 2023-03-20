@@ -15,11 +15,14 @@ export default function SignIn() {
   const passwordHandler = (e) => {
     setPassword(e.target.value);
   };
-
+  
+  console.log('khumo')
+  console.log('aki')
   const submit = async (e) => {
     try {
       e.preventDefault();
-      const res = await fetch("http://localhost:3003/api/users/login", {
+      const res = await fetch("https://curiosity-be.onrender.com/api/users/login", {
+      //const res = await fetch("http://localhost:3003/api/users/login", {
         method: "POST",
         headers: {
           Accept: "application/json",

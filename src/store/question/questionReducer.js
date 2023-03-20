@@ -39,7 +39,7 @@ const questionReducer = (state = initialState, action) => {
             case FETCH_QUESTION_FAILURE:
                 return {
                     loading: false,
-                    currentUserPosts: null,
+                    currentUserQuestions: null,
                     allPosts: [],
                     error: action.payload
                 }

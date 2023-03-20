@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import HomeMainSingleAnswer from "./HomeMainSingleAnswer";
 import { connect, useSelector } from "react-redux";
 import { fetchCurrentQuestionAnswers } from "../../../../store";

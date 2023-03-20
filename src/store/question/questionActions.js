@@ -136,8 +136,8 @@ export const fetchAllQuestions = () => {
                 headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
             })
             .then(res => {
-                const currentUserQuestions = res.data
-                dispatch(fetchAllQuestionsSuccess(currentUserQuestions))
+                const allQuestions = res.data
+                dispatch(fetchAllQuestionsSuccess(allQuestions))
             })
             .catch(err => {
                 dispatch(fetchQuestionFailure(err.message))
