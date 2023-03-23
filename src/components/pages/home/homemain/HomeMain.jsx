@@ -33,8 +33,6 @@ function HomeMain({fetchAllAnswers, fetchCurrentUserQuestions, currentUserQuesti
         console.log(Cookies.get('isAuthUser'), "mylovleycookie")
         console.log('eelllton')
     }, [])
-    // console.log('test')
-    // console.log('tes1223t')
     const currentUser = useSelector(state => state?.user?.currentUser)
     return (
         <div className="home-main-container">

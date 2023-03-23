@@ -12,6 +12,8 @@ export default function SignIn() {
     setEmail(e.target.value);
   };
 
+  //const [showMessage, setShowMessage] = useState(false);
+
   const passwordHandler = (e) => {
     setPassword(e.target.value);
   };
@@ -37,7 +39,7 @@ export default function SignIn() {
         const data = await res.json()
         localStorage.setItem("JWTToken", data.token);
         history.push("/profile");
-
+        
       } else {
         setAlert(true);
       }

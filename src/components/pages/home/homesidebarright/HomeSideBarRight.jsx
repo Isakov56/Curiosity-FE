@@ -33,7 +33,7 @@ function HomeSideBarRight({fetchAllUsers, allUsers, allQuestions, fetchAllQuesti
                 </div>
             </div>
             <div className=" recommendations-container w-100 rounded border mb-2">
-                <h6 className="border-bottom px-2 py-2">Today's most viewed</h6>
+                <h6 className="border-bottom px-2 py-2">Most viewed</h6>
                 <div className="pb-3">
                     <MostviewedList allQuestions={allQuestions} />
                 </div>

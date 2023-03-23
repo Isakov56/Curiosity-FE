@@ -9,7 +9,7 @@ import Questions from './components/pages/questions/Questions'
 import NavBar from './components/navbar/NavBar'
 import SpecificQuestion from './components/pages/question/SpecificQuestion'
 import StickyBox from "react-sticky-box"
-import {Route} from 'react-router-dom'
+import {Route, useHistory} from 'react-router-dom'
 import { isAuthUser } from "./helpers/auth";
 import { useSelector, useDispatch } from 'react-redux'
 import ProtectedRoute from "./customComponents/ProtectedRoute";
@@ -41,11 +41,15 @@ const mapDispatchToProps = (dispatch) => {
 
 
 function App({currentUser, fetchCurrentUser}) {
+  const history = useHistory()
   
   useEffect(() => {
     fetchCurrentUser();
     fetchAllUsers();
-    isAuthUser()
+    if (!isAuthUser()) {
+      history.push('/login');
+    }
+    //isAuthUser()
     //fetchCurrentUserPosts()
     // console.log(localStorage.getItem("JWTToken"), "my TTTTTTTTTTTTTTTT");
   }, []);

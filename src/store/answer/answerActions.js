@@ -114,6 +114,42 @@ export const addAnswer = (questionId, answerContent, handleClose, file) => {
     }
 }
 
+// export const addAnswer = (questionId, answerContent, handleClose, file) => {
+//     console.log(file, 'myFiLLLLLLLLLLEee')
+//     return (dispatch) => {
+//       dispatch(fetchAnswerRequest())
+//       axios.post(`${process.env.REACT_APP_BE_URL}/answers/${questionId}/add`, answerContent, {
+//         headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
+//       })
+//       .then(res => { 
+//         if (file) {
+//           axios.put(`${process.env.REACT_APP_BE_URL}/answers/${res.data._id}/editAnswerImage`, file, {
+//             headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
+//           })
+//           .then(res => {
+//             dispatch(fetchQuestionAnswersSuccess(res.data))
+//           })
+//           .catch(err => {
+//             dispatch(fetchAnswerFailure(err.message))
+//           })
+//         } else {
+//           axios.get(`${process.env.REACT_APP_BE_URL}/getAll/me`, {
+//             headers: {'Authorization': `Bearer ${localStorage.getItem('JWTToken')}`}
+//           })
+//           .then(res => {
+//             dispatch(fetchQuestionAnswersSuccess(res.data))
+//           })
+//           .catch(err => {
+//             dispatch(fetchAnswerFailure(err.message))
+//           })
+//         }
+//       })
+//       .catch(err => {
+//         dispatch(fetchAnswerFailure(err.message))
+//       })
+//     }
+//   }
+
 export const deleteAnswer = (questionId, answerId) => {
     return (dispatch) => {
       dispatch(fetchAnswerRequest())
