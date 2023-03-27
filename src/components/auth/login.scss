@@ -1,0 +1,32 @@
+.login {
+    background-image: url("https://res.cloudinary.com/de6vmr2ma/image/upload/v1679765790/-4-images_y8nkst.webp");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+.con{
+ width: 45rem;
+ background-color: white !important;
+}
+
+.loginButton:hover{
+    background-color: #e7e7e791;
+    cursor: pointer;
+}
+
+.signupHover:hover{
+    color: black !important; 
+}
+
+.signupHover{
+    color: black !important;   
+}
+
+.main-logo-login{
+    color: #ce4223;
+    font-size: 3.5rem;
+    font-weight: bold;
+    letter-spacing: 0px;
+}
