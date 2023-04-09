@@ -78,13 +78,6 @@ export default function SignIn() {
         </div>
         <div className="w-50 px-3">
           <Form onSubmit={submit} className="p-2">
-            {alert ? (
-              <Alert variant="danger" className="mt-3">
-                Email or Password is wrong. Please try again.
-              </Alert>
-            ) : (
-              <span></span>
-            )}
             <div className="border-bottom py-2 my-2">Log in</div>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Email address</Form.Label>
@@ -110,6 +103,13 @@ export default function SignIn() {
               
             </div>
           </Form>
+          {alert ? (
+              <Alert variant="danger" className="mt-3">
+                Email or Password is wrong. Please try again.
+              </Alert>
+            ) : (
+              <span></span>
+            )}
         </div>
       </div>
     </div>

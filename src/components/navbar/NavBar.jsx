@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from 'react-redux'
 import "./navbar.scss";
 import { getCookie } from "../../helpers/cookies";
+import { logoutUser } from "../../helpers/auth";
 import { InputGroup, FormControl, Button, Dropdown } from "react-bootstrap";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
@@ -12,14 +13,11 @@ function NavBar() {;
   const routerLocation = useLocation();
   const [showNav, setShowNav] = useState(true);
   const [location, setLocation] = useState(["/login", "/signup"]);
-  console.log(getCookie("token"), "lllllllllllllllllhdhdhdhdgdhhdghdghdghdghdghdggdghdghdghdghdghdghdgg");
 
   const signedHandler = () => {
     setLocation(["/login", "signup"]);
     history.push("/login");
   };
-
-  console.log(currentUser?.image, "testtttttttttttttttstst")
 
   // const currentUser = useSelector((state=> state.user.currentUser))
 
@@ -40,6 +38,10 @@ function NavBar() {;
   const test = (event) =>{
       event.preventDefault()
       history.push("/profile/posts")
+  }
+  const handleLogout = (event) =>{
+      event.preventDefault()
+      logoutUser();
   }
 
   const showNavBar = () => {
@@ -160,6 +162,10 @@ function NavBar() {;
                     <Dropdown.Item className="nav-dropdown" href="#/action-3">
                       <i className="mr-2 far fa-chart-bar"></i>
                       <span>Activity</span>
+                    </Dropdown.Item>
+                    <Dropdown.Item className="nav-dropdown" onClick={(event)=>{handleLogout(event)}}>
+                      <i className="mr-2 far fa-chart-bar"></i>
+                      <span>Log out</span>
                     </Dropdown.Item>
                   </div>
                 </Dropdown.Menu>

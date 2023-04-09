@@ -52,9 +52,7 @@ function App({currentUser, fetchCurrentUser}) {
     //isAuthUser()
     //fetchCurrentUserPosts()
     // console.log(localStorage.getItem("JWTToken"), "my TTTTTTTTTTTTTTTT");
-  }, []);
-
-  console.log(isAuthUser(), "coooooooooooooooooooooooooocki")
+  }, [isAuthUser]);
 
   return (
     <div className="App">

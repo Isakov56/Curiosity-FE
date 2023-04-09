@@ -30,8 +30,7 @@ function HomeMain({fetchAllAnswers, fetchCurrentUserQuestions, currentUserQuesti
     useEffect(() => {
         fetchAllAnswers()
         fetchCurrentUserQuestions()
-        console.log(Cookies.get('isAuthUser'), "mylovleycookie")
-        console.log('eelllton')
+
     }, [])
     const currentUser = useSelector(state => state?.user?.currentUser)
     return (
